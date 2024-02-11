@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1>Products</h1>
+        <h2>View products</h2>
+
+        <table>
+            <tr>
+                <th>PRODUCT ID</th>
+                <th>PRODUCT NAME</th>
+                <th>PRODUCT AvgBALL</th>
+                <th>PRODUCT BALL</th>
+                <th>PRODUCT NOTE</th>
+            </tr>
+            <tr th:each="p: ${products}" >
+                <td th:text="${p.id}"></td>
+                <td th:text="${p.name}"></td>
+                <td th:text="${p.ball}"></td>
+                <td>
+                    <span th:each="r : ${p.reactions}" th:utext="${r.ball + ', &lt;br&gt;'}"></span>
+                </td>
+                <td>
+                    <span th:each="r : ${p.reactions}" th:utext="${r.note} + ',&lt;br&gt;'"></span>
+                </td>
+            </tr>
+        </table>
+
+        <h2>Add a product</h2>
+        <form action="/products" method="post">
+            ID: <input type="text" name="id"><br />
+            Name: <input type="text" name="name"><br />
+            Ball: <input type="number" step="any" name="ball"><br />
+            Note: <input type="text"  name="note"><br />
+            <button type="submit">Add product</button>
+        </form>
+        <h2>Get ID & shoe average ID</h2>
+        <form action="/product/id" method="get">
+            ID: <input type="text" name="id"><br />
+            <button type="submit">Add product</button>
+        </form>
+    </body>
+</html>

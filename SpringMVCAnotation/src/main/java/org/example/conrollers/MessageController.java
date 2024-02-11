@@ -26,7 +26,7 @@ public class MessageController {
         this.objectMapper = objectMapper;
     }
 
-    @GetMapping(path = "/messages",produces = MediaType.APPLICATION_JSON_VALUE)
+        @GetMapping(path = "/messages",produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public String getMessages(){
         String result;

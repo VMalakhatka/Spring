@@ -84,11 +84,4 @@ public class ViewController {
         model.addAttribute("updatedUser", updatedUserDto);
         return "user_profile_edit_success";
     }
-
-    @GetMapping("/view/profile/{id}/delete")
-    public String getDeleteForm(long id, Model model) {
-        User user=userService.getUser(id);
-        model.addAttribute("deleteUser",user);
-        return "user_delete";
-    }
 }

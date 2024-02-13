@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>User status form</title>
+    </head>
+        <main>
+            <h1>Set status user
+                <br>
+                <p><b>Dear user - </b> <span th:text = "${message}"></span></p>
+            </h1>
+            <form th:object="${userForm}"
+                  th:action="@{/view/profile/{id}/status(id=${userId})}"
+                  method="post">
+                <input type="hidden" name="_method" th:value="PATCH">
+                <div>
+                    <span th:text="*{firstName}"></span>
+                    <br>
+                    <span th:text="*{lastName}"></span>
+                    <br>
+                    <span th:text="*{email}"></span>
+                    <br>
+                    <span th:text="*{birthDate}"></span>
+                    <br>
+                    <span th:text="*{status}"></span>
+                    <br>
+                    <label for="status"> Status </label>
+                    <input id="status" type="text"
+                           th:field="*{status}">
+                    <p th:if="${#fields.hasErrors('status')}"
+                       th:text="${#strings.listJoin(#fields.errors('status'), ', ')}"></p>
+                </div>
+                <button type="submit">Set status</button>
+            </form>
+        </main>
+
+        <a href="../../">Home</a>
+    </body>
+</html>

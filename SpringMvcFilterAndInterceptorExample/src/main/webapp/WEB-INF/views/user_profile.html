@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>User profile</title>
+    </head>
+    <body>
+        <h2>Account
+            <br>
+            <p><b>Dear user - </b> <span th:text = "${message}"></span></p>
+        </h2>
+            <p><b>id:</b> <span th:text = "${id}"></span></p>
+            <p><b>email:</b> <span th:text = "*{userForm.email}"></span></p>
+        <h2>Personal</h2>
+            <p><b>name:</b> <span th:text = "*{userForm.firstName}"></span></p>
+            <p><b>surname:</b> <span th:text = "*{userForm.lastName}"></span></p>
+            <p><b>age:</b> <span th:text = "*{userForm.birthDate}"></span></p>
+            <p><b>Status:</b> <span th:text = "${userForm.status}"></span></p>
+        <a href="../../">Home</a>
+    </body>
+</html>

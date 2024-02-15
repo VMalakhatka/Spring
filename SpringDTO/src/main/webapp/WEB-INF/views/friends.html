@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1>List of Friends</h1>
+        <h2>View your Friend</h2>
+
+        <table>
+            <tr>
+                <th> FIRSTNAME</th>
+                <th> LASTNAME </th>
+                <th> BIRTHDAY </th>
+            </tr>
+            <tr th:each="f: ${friends}" >
+                <td th:text="${f.firstName}"></td>
+                <td th:text="${f.lastName}"></td>
+                <td th:text="${f.birthday}"></td>
+<!--                <td>-->
+<!--                    <span th:each="r : ${p.reactions}" th:utext="${r.ball + ', &lt;br&gt;'}"></span>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <span th:each="r : ${p.reactions}" th:utext="${r.note} + ',&lt;br&gt;'"></span>-->
+<!--                </td>-->
+            </tr>
+        </table>
+
+        <h2>Find friend by data of birthday</h2>
+        <form action="/friend/by_birthday" method="get">
+            Date: <input type="date" name="date"><br />
+            <button type="submit">find</button>
+        </form>
+
+        <a href="/friend">Add more friend</a>
+    </body>
+</html>

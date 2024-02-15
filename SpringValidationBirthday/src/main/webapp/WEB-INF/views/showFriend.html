@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <h1>Your Friend</h1>
+            <span th:text="${friend.firstName}"/>
+            <span th:text="${friend.lastName}"/>
+            <span th:text="${friend.birthday}"/>
+<!--                <td>-->
+<!--                    <span th:each="r : ${p.reactions}" th:utext="${r.ball + ', &lt;br&gt;'}"></span>-->
+<!--                </td>-->
+<!--                <td>-->
+<!--                    <span th:each="r : ${p.reactions}" th:utext="${r.note} + ',&lt;br&gt;'"></span>-->
+<!--                </td>-->
+
+        <a href="/friend">Add more friend</a>
+    </body>
+</html>

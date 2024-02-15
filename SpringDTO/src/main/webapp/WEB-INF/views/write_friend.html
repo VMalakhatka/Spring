@@ -7,8 +7,8 @@
 <body>
 <main>
     <h1>Create user</h1>
-    <form th:object="${participant}"
-          th:action="@{/registration}"
+    <form th:object="${friend}"
+          th:action="@{/friend}"
           method="post">
         <div>
             <label for="firstName">First name</label>
@@ -25,17 +25,11 @@
                th:text="${#strings.listJoin(#fields.errors('lastName'), ', ')}"></p>
         </div>
         <div>
-            <label for="age">Age</label>
-            <input id="age" type="number"
-                   th:field="*{age}"/>
-            <p style="color: red" th:if="${#fields.hasErrors('age')}"
-               th:text="${#strings.listJoin(#fields.errors('age'), ', ')}"></p>
-        </div>
-        <div>
-            <label for="isAgree"> Personal data processing </label>
-            <input id="isAgree" type="checkbox" th:checked="*{isAgree}"/>
-<!--            <p style="color: red" th:if="${#fields.hasErrors('isAgree')}"-->
-<!--               th:text="${#strings.listJoin(#fields.errors('isAgree'), ', ')}"></p>-->
+            <label for="birthday">Age</label>
+            <input id="birthday" type="date"
+                   th:field="*{birthday}"/>
+            <p style="color: red" th:if="${#fields.hasErrors('birthday')}"
+               th:text="${#strings.listJoin(#fields.errors('birthday'), ', ')}"></p>
         </div>
         <button type="submit">Create user</button>
     </form>

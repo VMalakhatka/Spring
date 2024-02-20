@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="fdcd1a65-2205-4a68-97ad-7560f421be17" name="Lavka Mapping">
+      <data-sources db="ba99963d-842c-4654-93cc-fa21ef261d20" />
+      <scope>
+        <node kind="database" qname="Paint_Ua" />
+      </scope>
+    </mapping>
+  </component>
+</project>

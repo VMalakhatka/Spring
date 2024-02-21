@@ -12,18 +12,7 @@ import java.util.Map;
 public class Dish {
     private final long id;
     private final String name;
-    private final Map<Ingredient, Integer> ingredientsToAmount;
+    private final String ingredients;
 
 
-    public double calculatePrice(){
-        return ingredientsToAmount.entrySet().stream().mapToDouble(pair -> pair.getValue()* pair.getKey().price()).sum();
-    }
-
-    public int calculateNutrition(){
-        return ingredientsToAmount.entrySet().stream().mapToInt(p -> p.getValue() * p.getKey().nutrition()).sum();
-    }
-    public Duration calculateTime(){
-        return ingredientsToAmount.keySet().stream().map(Ingredient::cookingTime).max(Comparator.naturalOrder()).orElseThrow();
-
-    }
 }

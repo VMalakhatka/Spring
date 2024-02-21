@@ -1,44 +1,52 @@
 package org.example.dao;
 
 import org.example.entity.dish.Dish;
+import org.example.mapper.DishDaoMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
+import java.sql.*;
 import java.util.*;
 @Component
 public class MenuDaoImpl implements MenuDao {
-    private final Map<Long, Dish> idToDish;
-    private static long count = 0;
+private  final JdbcTemplate jdbcTemplate;
 
-    public MenuDaoImpl() {
-        this.idToDish = new HashMap<>();
+
+    public MenuDaoImpl(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @Override
     public Dish create(Dish candidate) {
         Objects.requireNonNull(candidate, "Candidate cant be null");
-        long id = count++;
-        Dish dish = new Dish(id, candidate.getName(), candidate.getIngredientsToAmount());
-        idToDish.put(id, dish);
-        return dish;
+        jdbcTemplate.update("INSERT INTO dishes (name, ingredients) values (?,?)",
+                candidate.getName(),candidate.getIngredients());
+
+        return readAll().stream().filter(dish -> dish.getName().equals(candidate.getName())).findFirst().orElseThrow();
     }
 
     @Override
     public Dish read(long id) {
-        return idToDish.get(id);
+        List<Dish> dishes = jdbcTemplate.query("SELECT *  FROM dishes WHERE id=?", new DishDaoMapper(),id);
+        if (dishes.size()>1) throw new IllegalStateException("id more one");
+        return dishes.stream().findFirst().orElseThrow();
     }
 
     @Override
     public List<Dish> readAll() {
-        return new ArrayList<>(idToDish.values());
+        return jdbcTemplate.query("SELECT *  FROM dishes;", new DishDaoMapper());
     }
+
 
     @Override
     public void update(long id, Dish dish) {
-        idToDish.put(id, dish);
+        Objects.requireNonNull(dish,"Candidat can't be Null");
+        jdbcTemplate.update("UPDATE dishes SET name=? , ingredients=? WHERE id=?;",dish.getName(),dish.getIngredients(),id);
     }
 
     @Override
     public void delete(long id) {
-        idToDish.remove(id);
+        jdbcTemplate.update("DELETE FROM dishes WHERE id=?;",id);
     }
 }

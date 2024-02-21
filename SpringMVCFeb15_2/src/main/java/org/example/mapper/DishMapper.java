@@ -12,10 +12,10 @@ import java.util.stream.Collectors;
 @Component
 public class DishMapper {
     public DishDto toDishDto(Dish dish) {
-        return new DishDto(dish.getId(), dish.getName(), dish.getIngredientsToAmount());
+        return new DishDto(dish.getId(), dish.getName(), dish.getIngredients());
     }
     public Dish toDish(DishDto dishDto){
-        return new Dish(dishDto.id(), dishDto.name(), dishDto.ingredientsToAmount());
+        return new Dish(dishDto.id(), dishDto.name(), dishDto.ingredient());
     }
     public IngredientDto toIngredientDto(Ingredient ingredient){
         return new IngredientDto(ingredient.name(), ingredient.nutrition(), ingredient.cookingTime(), ingredient.price());
